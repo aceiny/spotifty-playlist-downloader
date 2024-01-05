@@ -5,4 +5,4 @@ then search for the tracks on youtube and downlaod them to the local machine
 pip install -r reqs.txt
 
 ````
-## then you will need to run the main file 
+## then you will need to run the main file and input your playlist or any playlist you want to download url 
