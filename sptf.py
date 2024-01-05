@@ -8,7 +8,19 @@ sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=client_id, 
 
 def get_playlist_tracks(playlist_id):
     l = []
-    results = sp.playlist_tracks(playlist_id)
-    for track in results['items']:
-        l.append(track['track']['artists'][0]['name'] + ' - ' + track['track']['name'])
+    offset = 0
+
+    while True:
+        results = sp.playlist_tracks(playlist_id, offset=offset)
+        if not results or not results.get('items'):
+            break
+
+        for track in results['items']:
+            if track and track.get('track') and track['track'].get('artists') and track['track']['artists']:
+                l.append(track['track']['artists'][0]['name'] + ' - ' + track['track']['name'])
+
+        offset += len(results['items'])
+
     return l
+
+

@@ -11,7 +11,7 @@ if playlist_id == 'Not valid url':
     exit()
 
 playlist_tracks = get_playlist_tracks(playlist_id)
-
+print(playlist_tracks)
 for track in playlist_tracks:
     try :
         video_url = get_video_url_by_name(track)
